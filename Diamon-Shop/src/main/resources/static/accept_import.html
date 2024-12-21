@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta name="description" content="POS - Bootstrap Admin Template">
+    <meta name="keywords"
+          content="admin, estimates, bootstrap, business, corporate, creative, invoice, html5, responsive, Projects">
+    <meta name="author" content="Dreamguys - Bootstrap Admin Template">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Dreams Pos admin template</title>
+<link rel="shortcut icon" href="assets/ico/favicon.ico">
+    <link rel="stylesheet" href="assets_admin/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets_admin/css/animate.css">
+    <link rel="stylesheet" href="assets_admin/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="assets_admin/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="assets_admin/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="assets_admin/plugins/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="assets_admin/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+          font-family: "Arial", sans-serif;
+        }
+
+        .btn:hover {
+          opacity: 0.8;
+        }
+
+        .sidebar {
+          color: #ecf0f1;
+          height: 100vh;
+          padding-top: 20px;
+        }
+
+        .sidebar a {
+          color: #ecf0f1;
+          text-decoration: none;
+        }
+
+        .sidebar a:hover {
+          background-color: #34495e;
+        }
+
+        .sidebar .nav-item.active {
+          background-color: #16a085;
+        }
+
+        .content {
+          padding: 20px;
+        }
+
+        .navbar {
+          background-color: #3498db;
+          color: #ecf0f1;
+        }
+
+        .navbar .navbar-brand,
+        .navbar .nav-link {
+          color: #ecf0f1;
+        }
+
+        .invoice-header {
+          margin-bottom: 20px;
+        }
+
+        .invoice-header h1 {
+          font-size: 24px;
+        }
+
+        .invoice-header .breadcrumb {
+          background: none;
+          padding: 0;
+          margin-bottom: 0;
+        }
+
+        .invoice-header .breadcrumb-item a {
+          color: #3498db;
+        }
+
+        .invoice-header .breadcrumb-item.active {
+          color: #7f8c8d;
+        }
+
+        .invoice-table th,
+        .invoice-table td {
+          vertical-align: middle;
+        }
+
+        .invoice-table th {
+          background-color: #ecf0f1;
+        }
+
+        .invoice-table .table {
+          margin-bottom: 0;
+        }
+
+        .invoice-table .table th,
+        .invoice-table .table td {
+          border-top: none;
+        }
+
+        .invoice-table .table tfoot th,
+        .invoice-table .table tfoot td {
+          border-top: 1px solid #ddd;
+        }
+
+        .invoice-table .table tfoot th {
+          text-align: right;
+        }
+
+        .invoice-table .table tfoot td {
+          text-align: right;
+        }
+
+        .invoice-table .table tfoot .total {
+          font-size: 18px;
+          font-weight: bold;
+        }
+
+        .invoice-table .table tfoot .total-amount {
+          font-size: 18px;
+          font-weight: bold;
+          color: #e74c3c;
+        }
+
+        .invoice-table .table tfoot .total-amount-paid {
+          color: #27ae60;
+        }
+
+        .invoice-table .payment-methods {
+          margin-top: 20px;
+        }
+
+        .invoice-table .payment-methods label {
+          margin-right: 20px;
+        }
+
+        .invoice-table .notes {
+          margin-top: 20px;
+        }
+
+        .invoice-table .notes p {
+          margin-bottom: 0;
+        }
+
+        .invoice-table .btn {
+          margin-right: 10px;
+        }
+
+        .invoice-table .btn-confirm {
+          background-color: #27ae60;
+          color: #fff;
+        }
+
+        .invoice-table .btn-print {
+          background-color: #3498db;
+          color: #fff;
+        }
+
+        .invoice-table .btn-paid {
+          background-color: #27ae60;
+          color: #fff;
+        }
+
+        .footer {
+          margin-top: 20px;
+          text-align: center;
+          color: #7f8c8d;
+        }
+
+    </style>
+    <style>
+        .info-row {
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .info-row {
+            display: grid;
+            justify-content:left ;
+            grid-template-columns: 1fr 1fr ;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #333;
+            font-size: 16px;
+            flex: 0 0 30%;
+            text-align: left;
+            margin-right: 10px;
+        }
+
+        .info-value {
+            font-size: 16px;
+            color: #555;
+            flex: 0 0 65%;
+            text-align: right;
+            font-weight: normal;
+        }
+    </style>
+
+</head>
+
+<body>
+<div id="global-loader">
+    <div class="whirly-loader"></div>
+</div>
+
+<div class="main-wrapper">
+
+    <div class="header">
+
+        <div class="header-left active">
+            <a href="home.html" class="logo">
+                <img style="width: 100%;" src="assets_admin/img/logo-bootstrap-shoping-cart.png" alt="">
+            </a>
+        </div>
+
+        <a id="mobile_btn" class="mobile_btn" href="#sidebar">
+        <span class="bar-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+        </a>
+
+        <ul class="nav user-menu">
+
+            <li class="nav-item">
+                <div class="top-nav-search">
+                    <a href="javascript:void(0);" class="responsive-search">
+                        <i class="fa fa-search"></i>
+                    </a>
+                    <form action="#">
+                        <div class="searchinputs">
+                            <input type="text" placeholder="Search Here ...">
+                            <div class="search-addon">
+                                <span><img src="assets_admin/img/icons/closes.svg" alt="img"></span>
+                            </div>
+                        </div>
+                        <a class="btn" id="searchdiv"><img src="assets_admin/img/icons/search.svg" alt="img"></a>
+                    </form>
+                </div>
+            </li>
+
+
+            <li class="nav-item dropdown has-arrow flag-nav">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="javascript:void(0);" role="button">
+                    <img src="assets_admin/img/flags/us1.png" alt="" height="20">
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a href="javascript:void(0);" class="dropdown-item">
+                        <img src="assets_admin/img/flags/us.png" alt="" height="16"> English
+                    </a>
+                    <a href="javascript:void(0);" class="dropdown-item">
+                        <img src="assets_admin/img/flags/fr.png" alt="" height="16"> French
+                    </a>
+                    <a href="javascript:void(0);" class="dropdown-item">
+                        <img src="assets_admin/img/flags/es.png" alt="" height="16"> Spanish
+                    </a>
+                    <a href="javascript:void(0);" class="dropdown-item">
+                        <img src="assets_admin/img/flags/de.png" alt="" height="16"> German
+                    </a>
+                </div>
+            </li>
+
+
+            <li class="nav-item dropdown">
+                <a href="javascript:void(0);" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+                    <img src="assets_admin/img/icons/notification-bing.svg" alt="img"> <span
+                        class="badge rounded-pill">4</span>
+                </a>
+                <div class="dropdown-menu notifications">
+                    <div class="topnav-dropdown-header">
+                        <span class="notification-title">Notifications</span>
+                        <a href="javascript:void(0)" class="clear-noti"> Clear All </a>
+                    </div>
+                    <div class="noti-content">
+                        <ul class="notification-list">
+                            <li class="notification-message">
+                                <a href="activities.html">
+                                    <div class="media d-flex">
+                      <span class="avatar flex-shrink-0">
+                        <img alt="" src="assets_admin/img/profiles/avatar-02.jpg">
+                      </span>
+                                        <div class="media-body flex-grow-1">
+                                            <p class="noti-details"><span class="noti-title">John Doe</span> added new
+                                                task <span
+                                                        class="noti-title">Patient appointment booking</span></p>
+                                            <p class="noti-time"><span class="notification-time">4 mins ago</span></p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="notification-message">
+                                <a href="activities.html">
+                                    <div class="media d-flex">
+                      <span class="avatar flex-shrink-0">
+                        <img alt="" src="assets_admin/img/profiles/avatar-03.jpg">
+                      </span>
+                                        <div class="media-body flex-grow-1">
+                                            <p class="noti-details"><span class="noti-title">Tarah Shropshire</span>
+                                                changed the task name
+                                                <span class="noti-title">Appointment booking with payment gateway</span>
+                                            </p>
+                                            <p class="noti-time"><span class="notification-time">6 mins ago</span></p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="notification-message">
+                                <a href="activities.html">
+                                    <div class="media d-flex">
+                      <span class="avatar flex-shrink-0">
+                        <img alt="" src="assets_admin/img/profiles/avatar-06.jpg">
+                      </span>
+                                        <div class="media-body flex-grow-1">
+                                            <p class="noti-details"><span class="noti-title">Misty Tison</span> added
+                                                <span
+                                                        class="noti-title">Domenic Houston</span> and <span
+                                                        class="noti-title">Claire Mapes</span>
+                                                to project <span class="noti-title">Doctor available module</span></p>
+                                            <p class="noti-time"><span class="notification-time">8 mins ago</span></p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="notification-message">
+                                <a href="activities.html">
+                                    <div class="media d-flex">
+                      <span class="avatar flex-shrink-0">
+                        <img alt="" src="assets_admin/img/profiles/avatar-17.jpg">
+                      </span>
+                                        <div class="media-body flex-grow-1">
+                                            <p class="noti-details"><span class="noti-title">Rolland Webber</span>
+                                                completed task <span
+                                                        class="noti-title">Patient and Doctor video conferencing</span>
+                                            </p>
+                                            <p class="noti-time"><span class="notification-time">12 mins ago</span></p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="notification-message">
+                                <a href="activities.html">
+                                    <div class="media d-flex">
+                      <span class="avatar flex-shrink-0">
+                        <img alt="" src="assets_admin/img/profiles/avatar-13.jpg">
+                      </span>
+                                        <div class="media-body flex-grow-1">
+                                            <p class="noti-details"><span class="noti-title">Bernardo Galaviz</span>
+                                                added new task <span
+                                                        class="noti-title">Private chat module</span></p>
+                                            <p class="noti-time"><span class="notification-time">2 days ago</span></p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="topnav-dropdown-footer">
+                        <a href="activities.html">View all Notifications</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown has-arrow main-drop">
+                <a href="javascript:void(0);" class="dropdown-toggle nav-link userset" data-bs-toggle="dropdown">
+            <span class="user-img"><img src="assets_admin/img/profiles/avatar-03.jpg" alt="">
+              <span class="status online"></span></span>
+                </a>
+                <div class="dropdown-menu menu-drop-user">
+                    <div class="profilename">
+                        <div class="profileset">
+                                <span class="user-img"><img src="assets_admin/img/profiles/avatar-03.jpg" alt="">
+                                    <span class="status online"></span></span>
+                            <div class="profilesets">
+                                <h6 id="user-name">John Doe</h6>
+                                <h5 id="user-role">Admin</h5>
+                            </div>
+                        </div>
+                        <hr class="m-0">
+                        <a class="dropdown-item" href="account_detail.html"> <i class="me-2" data-feather="user"></i> My
+                            Profile</a>
+                        <a class="dropdown-item" href="change_password.html"><i class="me-2"
+                                                                                data-feather="settings"></i>Change password</a>
+                        <hr class="m-0">
+                        <button class="dropdown-item logout pb-0" id="logout"><img
+                                src="assets_admin/img/icons/log-out.svg" class="me-2" alt="img">Logout
+                        </button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+
+        <div class="dropdown mobile-user-menu">
+            <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+               aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="profile.html">My Profile</a>
+                <a class="dropdown-item" href="generalsettings.html">Settings</a>
+                <a class="dropdown-item" href="signin.html">Logout</a>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-inner slimscroll">
+            <div id="sidebar-menu" class="sidebar-menu">
+                <ul>
+                    <li>
+                        <a href="home.html"><img src="assets_admin/img/icons/dashboard.svg" alt="img"><span>
+                                    Trang chủ</span> </a>
+                    </li>
+                    <li class="submenu">
+                        <a class="active" href="javascript:void(0);"><img src="assets_admin/img/icons/product.svg" alt="img"><span> 
+                                    Quản lý kho</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                            <li><a href="list_product.html">Danh sách sản phẩm</a></li>
+                            <li><a href="import_issue.html">Thêm phiếu nhập</a></li>
+                            <li><a class="active" href="accept_import.html">Duyệt phiếu nhập</a></li>
+                            <li><a href="historic_import.html">Lịch sử nhập</a></li>
+                        </ul>
+                    </li>
+                    <li class="submenu">
+                        <a href="javascript:void(0);"><img src="assets_admin/img/icons/product.svg" alt="img"><span>
+                                    Quản lý giỏ hàng</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                            <li><a href="list_cart.html">Danh sách giỏ hàng</a></li>
+                            <li><a href="accept_export.html">Duyệt đơn hàng</a></li>
+                            <li><a href="historic_export.html">Lịch sử đơn hàng</a></li>
+                        </ul>
+                    </li>
+                    <li class="submenu">
+                        <a href="javascript:void(0);"><img src="assets_admin/img/icons/users1.svg" alt="img"><span>
+                                    Quản lý tài khoản</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                            <li><a href="list_account.html">Danh sách nhân viên</a></li>
+                            <li><a id="add-account" href="add_account.html"> Tạo mới nhân viên </a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-wrapper">
+        <div class="content">
+            <div class="page-header">
+                <div class="page-title">
+                    <h4>Phê duyệt phiếu nhập kho</h4>
+                    <h6>Danh sách phiếu cần phê duyệt</h6>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-top">
+                        <div class="search-set">
+                            <div class="search-path">
+                                <a class="btn btn-filter" id="filter_search">
+                                    <img src="assets_admin/img/icons/filter.svg" alt="img">
+                                    <span><img src="assets_admin/img/icons/closes.svg" alt="img"></span>
+                                </a>
+                            </div>
+                            <div class="search-input">
+                                <a class="btn btn-searchset"><img src="assets_admin/img/icons/search-white.svg" alt="img"></a>
+                            </div>
+                        </div>
+                        <div class="wordset">
+                            <ul>
+                                <li>
+                                    <a data-bs-toggle="tooltip" data-bs-placement="top" title="pdf"><img
+                                            src="assets_admin/img/icons/pdf.svg"
+                                            alt="img"></a>
+                                </li>
+                                <li>
+                                    <a data-bs-toggle="tooltip" data-bs-placement="top" title="excel"><img
+                                            src="assets_admin/img/icons/excel.svg" alt="img"></a>
+                                </li>
+                                <li>
+                                    <a data-bs-toggle="tooltip" data-bs-placement="top" title="print"><img
+                                            src="assets_admin/img/icons/printer.svg" alt="img"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card" id="filter_inputs">
+                        <div class="card-body pb-0">
+                            <div class="row">
+                                <div class="col-lg-2 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <select class="select">
+                                            <option>Choose Category</option>
+                                            <option>Computers</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <select class="select">
+                                            <option>Choose Sub Category</option>
+                                            <option>Fruits</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <select class="select">
+                                            <option>Choose Sub Brand</option>
+                                            <option>Iphone</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-1 col-sm-6 col-12 ms-auto">
+                                    <div class="form-group">
+                                        <a class="btn btn-filters ms-auto"><img src="assets_admin/img/icons/search-whites.svg"
+                                                                                alt="img"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="invoice-table" id="batches-container">
+
+                        <!-- sản phẩm mẫu  -->
+                        <div class="card mb-4 sanpham">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <h5 class="card-title">Đơn phiếu: <span>1234</span></h5>
+                                    <a href="duyetphieu.html">
+                                        <button class="btn btn-confirm"
+                                                style="background-color: rgb(100, 100, 247)">
+                                            Chi tiết
+                                        </button>
+                                    </a>
+
+                                </div>
+
+                                <div class="info-row thongtincoban">
+                                    <div class="info-item">
+                                        <strong class="info-label">Người nhập phiếu:</strong> <span class="info-value">Lan</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <strong>Ngày nhập:</strong> <span>22/12/2024</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <strong>Nhà cung cấp:</strong> <span>Nhà thuốc X</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <strong>Trạng thái:</strong> <span>WAITING</span>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-end mt-4">
+                                    <button class="btn btn-confirm">Phê duyệt</button>
+                                    <button class="btn btn-print" style="background-color: red">
+                                        Từ chối
+                                    </button>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+      // Gửi yêu cầu AJAX để lấy chi tiết các lô sản phẩm từ đơn phiếu
+      $.ajax({
+          url: "/management/import/all/",  // Đường dẫn API của bạn để lấy dữ liệu chi tiết đơn phiếu
+          method: "GET",
+          success: function(response) {
+              var batchesContainer = $('#batches-container');
+              batchesContainer.empty(); // Xóa nội dung cũ trong container
+
+              // Duyệt qua từng phiếu nhập trong mảng response
+              response.forEach(function(receipt) {
+                  // Tạo một div card cho mỗi phiếu nhập
+                  var receiptHtml = `
+                      <div class="card mb-4 sanpham">
+                          <div class="card-body">
+                              <div class="d-flex justify-content-between">
+                                  <h5 class="card-title">Đơn phiếu: ${receipt.receiptId}</h5>
+                                  <a href="duyetphieu.html">
+                                      <button class="btn btn-confirm" style="background-color: rgb(100, 100, 247)">
+                                          Chi tiết
+                                      </button>
+                                  </a>
+                              </div>
+                              <div class="info-row thongtincoban">
+                                  <div class="info-item">
+                                      <strong class="info-label">Người nhập phiếu:</strong> <span class="info-value">${receipt.user.fullName}</span>
+                                  </div>
+                                  <div class="info-item">
+                                      <strong>Ngày nhập:</strong> <span>${new Date(receipt.createAt).toLocaleDateString()}</span>
+                                  </div>
+                                  <div class="info-item">
+                                      <strong>Nhà cung cấp:</strong> <span>${receipt.supplier}</span>
+                                  </div>
+                                  <div class="info-item">
+                                      <strong>Trạng thái:</strong> <span>${receipt.status}</span>
+                                  </div>
+                              </div>
+                              <div class="d-flex justify-content-end mt-4">
+                                  <button class="btn btn-confirm approve-btn" data-receipt-id="${receipt.receiptId}" >Phê duyệt</button>
+                                  <button class="btn btn-print reject-btn" data-receipt-id="${receipt.receiptId}" style="background-color: red">
+                                      Từ chối
+                                  </button>
+                              </div>
+                          </div>
+                      </div>
+                  `;
+
+            // Append phần HTML của phiếu nhập vào container
+            batchesContainer.append(receiptHtml);
+                  });
+          },
+          error: function(xhr, status, error) {
+              if(xhr.status === 401){
+                alert("Bạn chưa đăng nhập");
+                window.location.href = xhr.responseText;
+              } else if (xhr.status === 403) {
+                alert("Bạn không có quyền ở trang này");
+                window.location.href = xhr.responseText;
+              }
+          }
+      });
+      // Khi nhấn nút Phê duyệt
+    $('#batches-container').on('click','.approve-btn', function() {
+        var receiptId = $(this).data('receipt-id'); // ID của phiếu nhập cần phê duyệt
+        var action = 'approve'; // Hành động là phê duyệt
+
+        $.ajax({
+            url: '/management/import/'+receiptId+'?action='+ action, // Địa chỉ API để xử lý phê duyệt
+            method: 'POST', // Gửi yêu cầu POST
+            contentType: 'application/json',
+            success: function(response) {
+                alert('Phiếu nhập đã được phê duyệt');
+                window.location.href = response;
+            },
+            error: function(xhr, status, error) {
+                alert(xhr.responseText);
+            }
+        });
+    });
+
+    // Khi nhấn nút Từ chối
+    $('#batches-container').on('click','.reject-btn', function() {
+        var receiptId = $(this).data('receipt-id'); // ID của phiếu nhập cần phê duyệt
+        var action = 'reject'; // Hành động là phê duyệt
+
+        $.ajax({
+            url: '/management/import/'+receiptId+'?action='+ action, // Địa chỉ API để xử lý từ chối
+            method: 'POST', // Gửi yêu cầu POST
+            contentType: 'application/json',
+            success: function(response) {
+                alert('Phiếu nhập đã bị từ chối');
+                window.location.href = response;
+            },
+            error: function(xhr, status, error) {
+                alert('Có lỗi xảy ra khi từ chối');
+                console.error(error);
+            }
+        });
+    });
+
+  });
+
+</script>
+
+<script src="assets_admin/js/jquery-3.6.0.min.js"></script>
+
+<script src="assets_admin/js/feather.min.js"></script>
+
+<script src="assets_admin/js/jquery.slimscroll.min.js"></script>
+
+<script src="assets_admin/js/jquery.dataTables.min.js"></script>
+<script src="assets_admin/js/dataTables.bootstrap4.min.js"></script>
+
+<script src="assets_admin/js/bootstrap.bundle.min.js"></script>
+
+<script src="assets_admin/plugins/select2/js/select2.min.js"></script>
+
+<script src="assets_admin/plugins/sweetalert/sweetalert2.all.min.js"></script>
+<script src="assets_admin/plugins/sweetalert/sweetalerts.min.js"></script>
+
+<script src="assets_admin/js/script.js"></script>
+<script src="assets_admin/js/common.js"></script>
+</body>
+
+</html>

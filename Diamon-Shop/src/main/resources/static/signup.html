@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng ký</title>
+    <link rel="shortcut icon" href="assets/ico/favicon.ico">
+    <style>
+        body {
+            /* background-color: #CACACA; */
+            font-size: 20px;
+            margin: 70px 0;
+        }
+
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .container-content {
+            display: flex;
+            justify-content: space-between;
+            margin: 50px 150px;
+        }
+
+        .container-content .container-left .container-information,
+        .container-content .container-right .container-information {
+            margin: 12px 0;
+            display: block;
+        }
+
+        .container-content .container-left .container-information input,
+        .container-content .container-right .container-information input {
+            width: 60vh;
+            height: 50px;
+            font-size: 18px;
+            padding-left: 14px;
+        }
+
+        #password, #re-enter-password {
+            width: 60vh;
+            height: 50px;
+            font-size: 18px;
+            padding-left: 14px;
+        }
+
+        #maxacthuc {
+            background-color: #0071fc;
+            width: 25vh;
+            height: 50px;
+            font-size: 24px;
+            color: #333;
+            border: none;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        #btn-submit {
+            background-color: #333;
+            width: 20vh;
+            height: 50px;
+            font-size: 18px;
+            color: #fff;
+            border: none;
+            left: 0;
+            border-radius: 10px;
+        }
+
+        #btn-cancel {
+            margin-left: 20px;
+            background-color: #333;
+            width: 20vh;
+            height: 50px;
+            font-size: 18px;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+        }
+
+        #btn-submit:hover, #btn-cancel:hover {
+            background-color: #fff;
+            color: #333;
+            border: 1px solid #333;
+        }
+        
+        span {
+        	color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>ĐĂNG KÝ</h1>
+        <div class="container-content">
+            <div class="container-left">
+                <h4>Thông tin khách hàng</h4>
+                <div class="container-information">
+                    <label for="">Tên đăng nhập:<span>*</span></label>
+                </div>
+                <div class="container-information">
+                    <input required="required" type="text" name="username" id="username" placeholder="User name">
+                </div>
+                <div class="container-information">
+                    <label for="">Họ và tên:<span>*</span></label>
+                </div>
+                <div class="container-information">
+                    <input required="required" type="text" name="hoten" id="hoten" placeholder="Full name">
+                </div>
+                <div class="container-information">
+                    <label for="">Số điện thoại:<span>*</span></label>
+                </div>
+                <div class="container-information">
+                    <input required="required" type="text" name="phone" id="phone" placeholder="Number phone">
+                </div>
+                <div class="container-information">
+                    <label for="">Email:<span>*</span></label>
+                </div>
+                <div class="container-information">
+                    <input required="required" type="email" name="email" id="email" placeholder="Email">
+                </div>
+            </div>
+            <div class="container-right">
+                <h4>Thông tin mật khẩu</h4>
+                <div class="container-information">
+                    <label for="">Mật khẩu:<span>*</span></label>
+                </div>
+                <div>
+                    <input required="required" type="password" name="password" id="password" placeholder="Password">
+                </div>
+                <div class="container-information">
+                    <label for="">Nhập lại mật khẩu:<span>*</span></label>
+                </div>
+                <div>
+                    <input required="required" type="password" name="re-enter-password" id="re-enter-password" placeholder="Re-enter password">
+                </div>
+                <div class="container-information">
+                    <label for="">Nhập mã xác thực</label>
+                </div>
+                <div class="container-information">
+                    <input required="required" type="text" name="maxacnhan" id="maxacnhan" placeholder="Mã xác nhận">
+                </div>
+                <div>
+                    <input type="button" onclick="generateRandomString()" id="maxacthuc" readonly value="GadtS9">
+                </div>
+                <div class="container-information">
+                    <button id="btn-submit">Đăng ký</button>
+                    <button id="btn-cancel" onclick="dangnhap()">Đăng nhập</button>
+                </div>
+            </div>
+        </div>
+    </div>
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        function generateRandomString() {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let result = '';
+            for (let i = 0; i < 6; i++) {
+                const randomIndex = Math.floor(Math.random() * characters.length);
+                result += characters[randomIndex];
+            }
+            document.getElementById('maxacthuc').value = result;
+        }
+        
+        function dangnhap() {
+            window.location.href = "login.html"; // Điều hướng đến trang đăng nhập
+        }
+        
+        $(document).ready(function() {
+			$('#btn-submit').click(function(e) {
+				e.preventDefault();
+
+				// Lấy dữ liệu từ các trường
+				let data = {
+					fullName : $('#hoten').val(),
+					username : $('#username').val(),
+					password : $('#password').val(),
+					phone : $('#phone').val(),
+					email : $('#email').val(),
+					role : "KHACHHANG"
+				};
+
+				// Gửi AJAX
+				$.ajax({
+					url : '/admin/management/addcustomer/', // Đường dẫn backend xử lý
+					type : 'POST',
+					contentType : 'application/json',
+					data : JSON.stringify(data),
+					success : function(response) {
+						alert('Tạo tài khoản thành công');
+						window.location.href = "login.html";
+					},
+					error : function(xhr, status, error) {
+						if (xhr.status === 400) {
+							alert(xhr.responseText);
+						}
+					}
+				});
+			});
+		});
+    </script>
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+	<script src="assets_admin/js/feather.min.js"></script>
+	<script src="assets_admin/js/jquery.slimscroll.min.js"></script>
+	<script src="assets_admin/js/jquery.dataTables.min.js"></script>
+	<script src="assets_admin/js/dataTables.bootstrap4.min.js"></script>
+	<script src="assets_admin/js/bootstrap.bundle.min.js"></script>
+	<script src="assets_admin/plugins/select2/js/select2.min.js"></script>
+	<script src="assets_admin/plugins/sweetalert/sweetalert2.all.min.js"></script>
+	<script src="assets_admin/plugins/sweetalert/sweetalerts.min.js"></script>
+	<script src="assets_admin/js/script.js"></script>
+	<script src="assets_admin/js/signup.js"></script>
+</body>
+
+</html>
